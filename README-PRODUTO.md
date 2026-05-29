@@ -26,12 +26,41 @@ Marketplace com todas as lojas:
 http://localhost:3000/lojas
 ```
 
+Cadastro de loja ou prestador:
+
+```txt
+http://localhost:3000/admin/lojas
+```
+
 Vitrine de uma loja:
 
 ```txt
 http://localhost:3000/loja/demo
 http://localhost:3000/loja/acai
 http://localhost:3000/loja/moda
+```
+
+## Prestadores de servico
+
+Prestador entra como uma loja normal. A diferenca e que os itens sao servicos.
+
+Exemplos:
+
+```txt
+Barbearia
+- Corte masculino
+- Barba
+- Sobrancelha
+
+Salao
+- Escova
+- Progressiva
+- Manicure
+
+Assistencia tecnica
+- Troca de tela
+- Formatacao
+- Orcamento
 ```
 
 ## Como vender

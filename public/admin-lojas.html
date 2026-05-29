@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastrar loja - VitrineZap</title>
+    <link rel="stylesheet" href="/marketplace.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Cadastro VitrineZap</h1>
+        <p class="muted">Cadastre lojas, profissionais e fornecedores de servicos</p>
+      </div>
+      <a class="button" href="/lojas">Ver marketplace</a>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <h2>Nova vitrine</h2>
+        <p>Serve para loja de produto, salao, mecanica, marmitaria, acai, roupas, assistencia e qualquer prestador que venda pelo WhatsApp.</p>
+      </section>
+
+      <section class="card">
+        <form id="storeForm" class="customerFields">
+          <input name="nome" placeholder="Nome da loja ou prestador" required>
+          <input name="slug" placeholder="Link curto, ex: acai-da-praca">
+          <input name="categoria" placeholder="Categoria, ex: Acai, Roupas, Salao, Eletricista">
+          <input name="cidade" placeholder="Cidade" value="Tres Coracoes">
+          <input name="whatsapp" placeholder="WhatsApp com DDI e DDD, ex: 5535999990000" required>
+          <input name="logo" placeholder="Logo, ex: /img/logoLogin.png" value="/img/logoLogin.png">
+          <input name="corPrimaria" placeholder="Cor principal" value="#7c3aed">
+          <input name="corSecundaria" placeholder="Cor secundaria" value="#1f2937">
+          <input name="corDestaque" placeholder="Cor destaque" value="#f59e0b">
+          <textarea name="descricao" placeholder="Descricao da vitrine"></textarea>
+
+          <h2>Produtos ou servicos</h2>
+          <div id="items" class="cartItems"></div>
+          <button id="addItem" class="secondary" type="button">Adicionar item</button>
+          <button type="submit">Salvar vitrine</button>
+        </form>
+      </section>
+
+      <section id="result" class="card" style="display:none"></section>
+    </main>
+
+    <script src="/admin-lojas.js"></script>
+  </body>
+</html>

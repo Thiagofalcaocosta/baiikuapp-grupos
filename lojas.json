@@ -1,0 +1,128 @@
+{
+  "demo": {
+    "slug": "demo",
+    "nome": "Loja Demo",
+    "categoria": "Variedades",
+    "cidade": "Tres Coracoes",
+    "whatsapp": "5535999990000",
+    "logo": "/img/logoLogin.png",
+    "corPrimaria": "#7c3aed",
+    "corSecundaria": "#1f2937",
+    "corDestaque": "#f59e0b",
+    "descricao": "Produtos selecionados para pedir direto pelo WhatsApp.",
+    "produtos": [
+      {
+        "id": "camiseta-basica",
+        "nome": "Camiseta basica",
+        "descricao": "Camiseta confortavel para o dia a dia.",
+        "preco": 39.9,
+        "categoria": "Roupas"
+      },
+      {
+        "id": "bone-classico",
+        "nome": "Bone classico",
+        "descricao": "Bone ajustavel em cores variadas.",
+        "preco": 29.9,
+        "categoria": "Acessorios"
+      },
+      {
+        "id": "kit-presente",
+        "nome": "Kit presente",
+        "descricao": "Combo pronto para presente.",
+        "preco": 79.9,
+        "categoria": "Presentes"
+      }
+    ]
+  },
+  "acai": {
+    "slug": "acai",
+    "nome": "Acai da Praca",
+    "categoria": "Acai e lanches",
+    "cidade": "Tres Coracoes",
+    "whatsapp": "5535999990000",
+    "logo": "/img/logoLogin.png",
+    "corPrimaria": "#6d28d9",
+    "corSecundaria": "#2e1065",
+    "corDestaque": "#facc15",
+    "descricao": "Monte seu pedido e envie direto para o atendimento.",
+    "produtos": [
+      {
+        "id": "acai-300",
+        "nome": "Acai 300ml",
+        "descricao": "Acompanha banana, granola e leite condensado.",
+        "preco": 14.9,
+        "categoria": "Acai"
+      },
+      {
+        "id": "acai-500",
+        "nome": "Acai 500ml",
+        "descricao": "Acompanha 3 adicionais a escolha.",
+        "preco": 22.9,
+        "categoria": "Acai"
+      },
+      {
+        "id": "combo-casal",
+        "nome": "Combo casal",
+        "descricao": "2 acais 500ml com adicionais.",
+        "preco": 42,
+        "categoria": "Combos"
+      }
+    ]
+  },
+  "moda": {
+    "slug": "moda",
+    "nome": "Moda Bella",
+    "categoria": "Roupas e acessorios",
+    "cidade": "Tres Coracoes",
+    "whatsapp": "5535999990000",
+    "logo": "/img/motoLogo.png",
+    "corPrimaria": "#be123c",
+    "corSecundaria": "#4c0519",
+    "corDestaque": "#f9a8d4",
+    "descricao": "Escolha as pecas e envie seu pedido para a loja.",
+    "produtos": [
+      {
+        "id": "vestido-midi",
+        "nome": "Vestido midi",
+        "descricao": "Tamanhos P, M e G. Consulte cores disponiveis.",
+        "preco": 119.9,
+        "categoria": "Vestidos"
+      },
+      {
+        "id": "bolsa-transversal",
+        "nome": "Bolsa transversal",
+        "descricao": "Modelo casual com alca regulavel.",
+        "preco": 89.9,
+        "categoria": "Bolsas"
+      },
+      {
+        "id": "sandalia",
+        "nome": "Sandalia feminina",
+        "descricao": "Numeracao 34 ao 39.",
+        "preco": 99.9,
+        "categoria": "Calcados"
+      }
+    ]
+  },
+  "barbearia-centro": {
+    "slug": "barbearia-centro",
+    "nome": "Barbearia Centro",
+    "categoria": "Barbearia",
+    "cidade": "Tres Coracoes",
+    "whatsapp": "5535999990000",
+    "logo": "/img/logoLogin.png",
+    "corPrimaria": "#7c3aed",
+    "corSecundaria": "#1f2937",
+    "corDestaque": "#f59e0b",
+    "descricao": "Escolha o servico e envie seu pedido de agendamento pelo WhatsApp.",
+    "produtos": [
+      {
+        "id": "corte-masculino",
+        "nome": "Corte masculino",
+        "descricao": "Corte simples",
+        "preco": 35,
+        "categoria": "Servicos"
+      }
+    ]
+  }
+}

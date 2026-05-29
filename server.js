@@ -7,13 +7,14 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const DB_FILE = path.join(__dirname, 'database.json');
+const STORES_FILE = path.join(__dirname, 'lojas.json');
 const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN;
 const ACCESS_TOKEN = process.env.WHATSAPP_ACCESS_TOKEN;
 const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID;
 const API_VERSION = process.env.WHATSAPP_API_VERSION || 'v21.0';
 const DEFAULT_GROUP_SLUG = 'demo';
 
-const lojas = {
+const DEFAULT_LOJAS = {
   demo: {
     slug: 'demo',
     nome: 'Loja Demo',
@@ -163,6 +164,19 @@ function writeDb(lista) {
   fs.writeFileSync(DB_FILE, JSON.stringify(lista, null, 2));
 }
 
+function readLojas() {
+  if (!fs.existsSync(STORES_FILE)) {
+    writeLojas(DEFAULT_LOJAS);
+    return DEFAULT_LOJAS;
+  }
+
+  return JSON.parse(fs.readFileSync(STORES_FILE, 'utf8'));
+}
+
+function writeLojas(lojas) {
+  fs.writeFileSync(STORES_FILE, JSON.stringify(lojas, null, 2));
+}
+
 function nextId(lista) {
   return lista.reduce((max, pedido) => Math.max(max, Number(pedido.id) || 0), 0) + 1;
 }
@@ -199,6 +213,7 @@ function getGrupo(slug) {
 
 function getLoja(slug) {
   const normalized = normalizeSlug(slug);
+  const lojas = readLojas();
   return lojas[normalized] || null;
 }
 
@@ -336,6 +351,10 @@ app.get('/loja/:lojaSlug', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'loja.html'));
 });
 
+app.get('/admin/lojas', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin-lojas.html'));
+});
+
 app.get('/mototaxi', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'panelMototaxi.html'));
 });
@@ -369,6 +388,7 @@ app.get('/api/grupos/:grupoSlug', (req, res) => {
 });
 
 app.get('/api/lojas', (req, res) => {
+  const lojas = readLojas();
   res.json({
     lojas: Object.values(lojas).map((loja) => ({
       slug: loja.slug,
@@ -388,6 +408,41 @@ app.get('/api/lojas/:lojaSlug', (req, res) => {
   const loja = getLoja(req.params.lojaSlug);
   if (!loja) return res.status(404).json({ error: 'Loja nao encontrada' });
   res.json({ loja: publicLoja(loja) });
+});
+
+app.post('/api/lojas', (req, res) => {
+  const lojas = readLojas();
+  const slug = normalizeSlug(req.body.slug || req.body.nome);
+
+  if (!slug || !normalizeText(req.body.nome) || !normalizeText(req.body.whatsapp)) {
+    return res.status(400).json({ error: 'Nome e WhatsApp sao obrigatorios' });
+  }
+
+  const produtos = Array.isArray(req.body.produtos) ? req.body.produtos : [];
+  lojas[slug] = {
+    slug,
+    nome: normalizeText(req.body.nome),
+    categoria: normalizeText(req.body.categoria || 'Loja'),
+    cidade: normalizeText(req.body.cidade || 'Tres Coracoes'),
+    whatsapp: normalizeText(req.body.whatsapp).replace(/\D/g, ''),
+    logo: normalizeText(req.body.logo || '/img/logoLogin.png'),
+    corPrimaria: normalizeText(req.body.corPrimaria || '#7c3aed'),
+    corSecundaria: normalizeText(req.body.corSecundaria || '#1f2937'),
+    corDestaque: normalizeText(req.body.corDestaque || '#f59e0b'),
+    descricao: normalizeText(req.body.descricao || 'Escolha produtos e envie o pedido pelo WhatsApp.'),
+    produtos: produtos
+      .filter((produto) => normalizeText(produto.nome))
+      .map((produto, index) => ({
+        id: normalizeSlug(produto.id || produto.nome || `item-${index + 1}`),
+        nome: normalizeText(produto.nome),
+        descricao: normalizeText(produto.descricao),
+        preco: Number(produto.preco) || 0,
+        categoria: normalizeText(produto.categoria || 'Geral')
+      }))
+  };
+
+  writeLojas(lojas);
+  res.status(201).json({ loja: publicLoja(lojas[slug]) });
 });
 
 app.get('/api/grupos/:grupoSlug/pedidos', (req, res) => {
