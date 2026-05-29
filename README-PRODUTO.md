@@ -1,4 +1,4 @@
-# Baiiku Lojas
+# VitrineZap
 
 Marketplace simples para lojas venderem pelo WhatsApp.
 
@@ -98,6 +98,6 @@ Start Command: npm start
 Depois de publicar:
 
 ```txt
-https://baiikuapp-grupos.onrender.com/lojas
-https://baiikuapp-grupos.onrender.com/loja/demo
+https://vitrinezap.onrender.com/lojas
+https://vitrinezap.onrender.com/loja/demo
 ```

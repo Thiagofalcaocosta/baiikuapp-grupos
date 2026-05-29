@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: baiikuapp-grupos
+    name: vitrinezap
     env: node
     plan: free
     buildCommand: npm install
