@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teste WhatsApp</title>
+    <style>
+      body {
+        background: #f4f6f8;
+        color: #17212b;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 24px;
+      }
+
+      main {
+        background: #ffffff;
+        border: 1px solid #d8dee6;
+        border-radius: 8px;
+        margin: 0 auto;
+        max-width: 820px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin: 0 0 6px;
+      }
+
+      p {
+        color: #647282;
+        margin: 0 0 18px;
+      }
+
+      form {
+        display: grid;
+        gap: 12px;
+      }
+
+      input,
+      textarea {
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font: inherit;
+        padding: 12px;
+        width: 100%;
+      }
+
+      textarea {
+        min-height: 180px;
+        resize: vertical;
+      }
+
+      button,
+      a {
+        align-items: center;
+        background: #166534;
+        border: 0;
+        border-radius: 6px;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-flex;
+        font-weight: 700;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 14px;
+        text-decoration: none;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .secondary {
+        background: #334155;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Simular WhatsApp</h1>
+      <p>Use esta tela enquanto a Cloud API da Meta ainda nao esta conectada.</p>
+
+      <form id="form">
+        <input id="name" value="Joao" placeholder="Nome">
+        <input id="phone" value="5511999999999" placeholder="Telefone com DDI">
+        <textarea id="text">CORRIDA
+Nome: Joao
+Origem: Rua A, 123
+Destino: Centro
+Pagamento: Pix</textarea>
+        <div class="actions">
+          <button type="submit">Enviar como WhatsApp</button>
+          <a class="secondary" href="/mototaxi">Abrir painel mototaxi</a>
+        </div>
+      </form>
+    </main>
+
+    <script>
+      document.getElementById('form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const response = await fetch('/api/test/receive-whatsapp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customerName: document.getElementById('name').value,
+            customerPhone: document.getElementById('phone').value,
+            text: document.getElementById('text').value
+          })
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          alert(data.error || 'Erro ao criar pedido');
+          return;
+        }
+
+        alert(`Corrida #${data.pedido.id} criada no app.`);
+        window.location.href = '/mototaxi';
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,275 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--page-bg, #f3f5f7);
+  color: #17212b;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.topbar {
+  align-items: center;
+  background: var(--secondary, #334155);
+  border-bottom: 4px solid var(--accent, #f59e0b);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 24px;
+}
+
+.brand {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.brandLogo {
+  background: #ffffff;
+  border-radius: 8px;
+  height: 54px;
+  object-fit: contain;
+  padding: 6px;
+  width: 54px;
+}
+
+.brand h1,
+.brand p,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.brand h1 {
+  font-size: 24px;
+}
+
+.brand p {
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 4px;
+}
+
+.shell {
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: 22px;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--primary, #166534), var(--secondary, #334155));
+  border: 1px solid #d8dee6;
+  border-radius: 8px;
+  color: #ffffff;
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 18px;
+}
+
+.hero h2 {
+  font-size: 26px;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.45;
+}
+
+.formCard,
+.card {
+  background: #ffffff;
+  border: 1px solid #d8dee6;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.formGrid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  color: #334155;
+  display: grid;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 6px;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  color: #17212b;
+  font: inherit;
+  min-height: 42px;
+  padding: 10px;
+  width: 100%;
+}
+
+textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+button,
+.buttonLink {
+  align-items: center;
+  background: var(--primary, #166534);
+  border: 0;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  text-decoration: none;
+}
+
+button.secondary,
+.buttonLink.secondary {
+  background: var(--accent, #f59e0b);
+  color: #17212b;
+}
+
+button.warn {
+  background: #b91c1c;
+}
+
+button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.success {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  color: #14532d;
+  display: none;
+  margin-top: 12px;
+  padding: 12px;
+}
+
+.toolbar {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.columns {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.columnTitle {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.count {
+  background: #e2e8f0;
+  border-radius: 999px;
+  color: #334155;
+  font-weight: 700;
+  padding: 4px 9px;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+}
+
+.card {
+  display: grid;
+  gap: 10px;
+}
+
+.cardHeader {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.tag {
+  background: color-mix(in srgb, var(--accent, #f59e0b) 24%, white);
+  border-radius: 999px;
+  color: var(--secondary, #334155);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 8px;
+}
+
+.status {
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 8px;
+}
+
+.status.pendiente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.aceptado {
+  background: color-mix(in srgb, var(--primary, #166534) 20%, white);
+  color: var(--secondary, #334155);
+}
+
+.status.em_andamento {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status.completado {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.details {
+  color: #334155;
+  display: grid;
+  gap: 5px;
+  line-height: 1.35;
+}
+
+.actions {
+  display: grid;
+  gap: 8px;
+}
+
+.empty {
+  color: #647282;
+  padding: 16px 0;
+}
+
+@media (max-width: 900px) {
+  .columns,
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar,
+  .toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

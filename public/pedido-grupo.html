@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pedir corrida ou entrega</title>
+    <link rel="stylesheet" href="/grupo.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img id="grupoLogo" class="brandLogo" src="/img/motoLogo.png" alt="">
+        <div>
+          <h1 id="grupoNome">BaiikuApp</h1>
+          <p id="grupoCidade">Pedidos para mototaxi e entregas</p>
+        </div>
+      </div>
+      <a id="painelLink" class="buttonLink secondary" href="#">Painel</a>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <h2>Peça pelo link do grupo</h2>
+        <p>Preencha os dados do pedido. O dono do grupo e os motoboys acompanham pelo painel.</p>
+      </section>
+
+      <section class="formCard">
+        <form id="pedidoForm" class="formGrid">
+          <label>
+            Tipo de pedido
+            <select id="tipo" name="tipo">
+              <option value="transporte">Corrida de mototaxi</option>
+              <option value="entrega">Entrega ou encomenda</option>
+            </select>
+          </label>
+
+          <label>
+            Pagamento
+            <select id="pagamento" name="pagamento">
+              <option value="Pix">Pix</option>
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartao">Cartao</option>
+              <option value="A combinar">A combinar</option>
+            </select>
+          </label>
+
+          <label>
+            Nome
+            <input id="nome" name="nome" autocomplete="name" required>
+          </label>
+
+          <label>
+            WhatsApp
+            <input id="telefone" name="telefone" inputmode="tel" placeholder="35 99999-9999" required>
+          </label>
+
+          <label>
+            Origem / retirada
+            <input id="origem" name="origem" placeholder="Rua, bairro, referencia">
+          </label>
+
+          <label>
+            Destino / entrega
+            <input id="destino" name="destino" placeholder="Rua, bairro, referencia" required>
+          </label>
+
+          <label class="full">
+            Item ou observacao
+            <textarea id="descricao" name="descricao" placeholder="Ex: documento, lanche, mercado, passageiro com mochila"></textarea>
+          </label>
+
+          <button class="full" type="submit">Enviar pedido</button>
+        </form>
+
+        <div id="success" class="success"></div>
+      </section>
+    </main>
+
+    <script src="/pedido-grupo.js"></script>
+  </body>
+</html>

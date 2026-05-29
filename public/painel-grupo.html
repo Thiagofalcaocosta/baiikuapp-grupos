@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Painel do grupo</title>
+    <link rel="stylesheet" href="/grupo.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img id="grupoLogo" class="brandLogo" src="/img/motoLogo.png" alt="">
+        <div>
+          <h1 id="grupoNome">Painel</h1>
+          <p id="grupoCidade">Pedidos do grupo</p>
+        </div>
+      </div>
+      <a id="pedidoLink" class="buttonLink" href="#">Abrir link de pedido</a>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <h2>Controle do dono do grupo</h2>
+        <p>Pedidos entram pelo link divulgado no WhatsApp. Motoboys aceitam e atualizam o andamento por aqui.</p>
+      </section>
+
+      <div class="toolbar">
+        <button id="refreshButton" type="button">Atualizar pedidos</button>
+        <span id="summary">Carregando...</span>
+      </div>
+
+      <section class="columns">
+        <div>
+          <div class="columnTitle">
+            <h3>Pendentes</h3>
+            <span id="pendingCount" class="count">0</span>
+          </div>
+          <div id="pendingList" class="list"></div>
+        </div>
+
+        <div>
+          <div class="columnTitle">
+            <h3>Em atendimento</h3>
+            <span id="activeCount" class="count">0</span>
+          </div>
+          <div id="activeList" class="list"></div>
+        </div>
+
+        <div>
+          <div class="columnTitle">
+            <h3>Finalizados</h3>
+            <span id="doneCount" class="count">0</span>
+          </div>
+          <div id="doneList" class="list"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/painel-grupo.js"></script>
+  </body>
+</html>
