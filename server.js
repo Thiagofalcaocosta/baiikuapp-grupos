@@ -13,6 +13,114 @@ const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID;
 const API_VERSION = process.env.WHATSAPP_API_VERSION || 'v21.0';
 const DEFAULT_GROUP_SLUG = 'demo';
 
+const lojas = {
+  demo: {
+    slug: 'demo',
+    nome: 'Loja Demo',
+    categoria: 'Variedades',
+    cidade: 'Tres Coracoes',
+    whatsapp: '5535999990000',
+    logo: '/img/logoLogin.png',
+    corPrimaria: '#7c3aed',
+    corSecundaria: '#1f2937',
+    corDestaque: '#f59e0b',
+    descricao: 'Produtos selecionados para pedir direto pelo WhatsApp.',
+    produtos: [
+      {
+        id: 'camiseta-basica',
+        nome: 'Camiseta basica',
+        descricao: 'Camiseta confortavel para o dia a dia.',
+        preco: 39.9,
+        categoria: 'Roupas'
+      },
+      {
+        id: 'bone-classico',
+        nome: 'Bone classico',
+        descricao: 'Bone ajustavel em cores variadas.',
+        preco: 29.9,
+        categoria: 'Acessorios'
+      },
+      {
+        id: 'kit-presente',
+        nome: 'Kit presente',
+        descricao: 'Combo pronto para presente.',
+        preco: 79.9,
+        categoria: 'Presentes'
+      }
+    ]
+  },
+  acai: {
+    slug: 'acai',
+    nome: 'Acai da Praca',
+    categoria: 'Acai e lanches',
+    cidade: 'Tres Coracoes',
+    whatsapp: '5535999990000',
+    logo: '/img/logoLogin.png',
+    corPrimaria: '#6d28d9',
+    corSecundaria: '#2e1065',
+    corDestaque: '#facc15',
+    descricao: 'Monte seu pedido e envie direto para o atendimento.',
+    produtos: [
+      {
+        id: 'acai-300',
+        nome: 'Acai 300ml',
+        descricao: 'Acompanha banana, granola e leite condensado.',
+        preco: 14.9,
+        categoria: 'Acai'
+      },
+      {
+        id: 'acai-500',
+        nome: 'Acai 500ml',
+        descricao: 'Acompanha 3 adicionais a escolha.',
+        preco: 22.9,
+        categoria: 'Acai'
+      },
+      {
+        id: 'combo-casal',
+        nome: 'Combo casal',
+        descricao: '2 acais 500ml com adicionais.',
+        preco: 42.0,
+        categoria: 'Combos'
+      }
+    ]
+  },
+  moda: {
+    slug: 'moda',
+    nome: 'Moda Bella',
+    categoria: 'Roupas e acessorios',
+    cidade: 'Tres Coracoes',
+    whatsapp: '5535999990000',
+    logo: '/img/motoLogo.png',
+    corPrimaria: '#be123c',
+    corSecundaria: '#4c0519',
+    corDestaque: '#f9a8d4',
+    descricao: 'Escolha as pecas e envie seu pedido para a loja.',
+    produtos: [
+      {
+        id: 'vestido-midi',
+        nome: 'Vestido midi',
+        descricao: 'Tamanhos P, M e G. Consulte cores disponiveis.',
+        preco: 119.9,
+        categoria: 'Vestidos'
+      },
+      {
+        id: 'bolsa-transversal',
+        nome: 'Bolsa transversal',
+        descricao: 'Modelo casual com alca regulavel.',
+        preco: 89.9,
+        categoria: 'Bolsas'
+      },
+      {
+        id: 'sandalia',
+        nome: 'Sandalia feminina',
+        descricao: 'Numeracao 34 ao 39.',
+        preco: 99.9,
+        categoria: 'Calcados'
+      }
+    ]
+  }
+};
+
 const grupos = {
   demo: {
     slug: 'demo',
@@ -86,6 +194,27 @@ function getGrupo(slug) {
     corPrimaria: '#166534',
     corSecundaria: '#334155',
     corDestaque: '#f59e0b'
+  };
+}
+
+function getLoja(slug) {
+  const normalized = normalizeSlug(slug);
+  return lojas[normalized] || null;
+}
+
+function publicLoja(loja) {
+  return {
+    slug: loja.slug,
+    nome: loja.nome,
+    categoria: loja.categoria,
+    cidade: loja.cidade,
+    whatsapp: loja.whatsapp,
+    logo: loja.logo,
+    corPrimaria: loja.corPrimaria,
+    corSecundaria: loja.corSecundaria,
+    corDestaque: loja.corDestaque,
+    descricao: loja.descricao,
+    produtos: loja.produtos
   };
 }
 
@@ -196,7 +325,15 @@ function createPedidoFromWhatsapp({ customerPhone, customerName, text }) {
 }
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'marketplace.html'));
+});
+
+app.get('/lojas', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'marketplace.html'));
+});
+
+app.get('/loja/:lojaSlug', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'loja.html'));
 });
 
 app.get('/mototaxi', (req, res) => {
@@ -229,6 +366,28 @@ app.get('/solicitud', (req, res) => {
 
 app.get('/api/grupos/:grupoSlug', (req, res) => {
   res.json({ grupo: getGrupo(req.params.grupoSlug) });
+});
+
+app.get('/api/lojas', (req, res) => {
+  res.json({
+    lojas: Object.values(lojas).map((loja) => ({
+      slug: loja.slug,
+      nome: loja.nome,
+      categoria: loja.categoria,
+      cidade: loja.cidade,
+      logo: loja.logo,
+      corPrimaria: loja.corPrimaria,
+      corSecundaria: loja.corSecundaria,
+      corDestaque: loja.corDestaque,
+      descricao: loja.descricao
+    }))
+  });
+});
+
+app.get('/api/lojas/:lojaSlug', (req, res) => {
+  const loja = getLoja(req.params.lojaSlug);
+  if (!loja) return res.status(404).json({ error: 'Loja nao encontrada' });
+  res.json({ loja: publicLoja(loja) });
 });
 
 app.get('/api/grupos/:grupoSlug/pedidos', (req, res) => {

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Loja</title>
+    <link rel="stylesheet" href="/marketplace.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img id="logo" class="brandLogo" src="/img/logoLogin.png" alt="">
+        <div>
+          <h1 id="storeName">Loja</h1>
+          <p id="storeInfo" class="muted">Produtos pelo WhatsApp</p>
+        </div>
+      </div>
+      <a class="button" href="/lojas">Outras lojas</a>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <h2 id="heroTitle">Produtos da loja</h2>
+        <p id="heroDescription">Monte seu pedido e envie direto para a loja.</p>
+      </section>
+
+      <section class="layout">
+        <div>
+          <h2>Produtos</h2>
+          <div id="products" class="products"></div>
+        </div>
+
+        <aside class="card cart">
+          <h2>Pedido</h2>
+          <div id="cartItems" class="cartItems"></div>
+          <div class="total">
+            <span>Total</span>
+            <span id="total">R$ 0,00</span>
+          </div>
+
+          <div class="customerFields">
+            <input id="customerName" placeholder="Seu nome">
+            <input id="customerPhone" placeholder="Seu WhatsApp">
+            <textarea id="customerNote" placeholder="Observacao, tamanho, cor ou endereco"></textarea>
+            <button id="sendOrder" type="button">Enviar pedido no WhatsApp</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="/loja.js"></script>
+  </body>
+</html>
